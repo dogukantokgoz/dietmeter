@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Login\Repositories;
+namespace App\Http\Controllers\Auth\Repositories;
 
-use App\Http\Controllers\Login\Contracts\LoginInterface;
+use App\Http\Controllers\Auth\Contracts\LoginInterface;
 
 class LoginRepository implements LoginInterface
 {

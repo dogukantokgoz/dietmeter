@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Login\Controller\LoginController;
+use App\Http\Controllers\Auth\Controller\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,9 +15,9 @@ use App\Http\Controllers\Login\Controller\LoginController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::post('/login', [AuthController::class, 'login'])->name('login');
+Route::post('/register', [AuthController::class, 'register'])->name('register');
+
+Route::group(['middleware' => 'jwt.auth'], function () {
+    Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 });
-
-
-Route::post('/register', [LoginController::class, 'register'])->name('register');

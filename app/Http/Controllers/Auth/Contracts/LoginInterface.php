@@ -1,6 +1,6 @@
 <?php 
 
-namespace App\Http\Controllers\Login\Contracts;
+namespace App\Http\Controllers\Auth\Contracts;
 
 interface LoginInterface
 {

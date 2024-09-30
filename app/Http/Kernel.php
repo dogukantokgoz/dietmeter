@@ -43,8 +43,12 @@ class Kernel extends HttpKernel
             \Illuminate\Routing\Middleware\ThrottleRequests::class.':api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
+    
     ];
 
+    protected $routeMiddleware = [
+        'jwt.auth' => \Tymon\JWTAuth\Http\Middleware\Authenticate::class,
+    ];
     /**
      * The application's middleware aliases.
      *
