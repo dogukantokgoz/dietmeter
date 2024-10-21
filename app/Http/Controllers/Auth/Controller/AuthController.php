@@ -7,6 +7,7 @@ use Illuminate\Routing\Controller;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Auth\Requests\RegisterRequest;
 use App\Http\Controllers\Auth\Requests\LoginRequest;
+use App\Enumerations\Auth\LoginEnum;
 use Illuminate\Support\Facades\Auth;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
@@ -38,12 +39,12 @@ class AuthController extends Controller
     public function register(RegisterRequest $request)
     {
         try {   
-            $user = User::create($request->validated());
+            $user = app()->make(LoginInterface::class)->register($request); 
             
-            if($user){  
-                return response()->json(['status' => 'success', 'message' => 'User created successfully']);
+            if($user){          
+                return response()->json(['status' => 'success', 'message' => LoginEnum::SUCCESS_CREATED->value]);
             } else {
-                return response()->json(['status' => 'error', 'message' => 'User created failed']);
+                return response()->json(['status' => 'error', 'message' => LoginEnum::SUCCESS_FAILED->value]);
             }
         } catch (\Exception $e) {
             return response()->json(['status' => 'error', 'message' => $e->getMessage()]);

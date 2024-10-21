@@ -8,6 +8,6 @@ class LoginRepository implements LoginInterface
 {
     public function register($request)
     {
-        dd($request);
+        return User::create($request->validated());
     }
 }
