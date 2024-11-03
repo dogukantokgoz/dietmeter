@@ -20,9 +20,9 @@ use App\Http\Controllers\UserProfile\Controllers\UserProfileController;
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/register', [AuthController::class, 'register'])->name('register');
 
-//UserProfile
-Route::resource('/profile', UserProfileController::class)->only('index');
-
 Route::group(['middleware' => 'jwt.auth'], function () {
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+
+    //UserProfile
+    Route::resource('/profile', UserProfileController::class);
 });

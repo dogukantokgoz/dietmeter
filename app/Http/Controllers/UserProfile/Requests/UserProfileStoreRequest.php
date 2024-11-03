@@ -4,7 +4,7 @@ namespace App\Http\Controllers\UserProfile\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UserProfileIndexRequest extends FormRequest
+class UserProfileStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,7 +22,13 @@ class UserProfileIndexRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'id' => 'required|integer',
+            'weight' => 'nullable',
+            'height' => 'nullable',
+            'age' => 'nullable',
+            'gender' => 'nullable',
+            'activity_level' => 'nullable',
+            'diet_type' => 'nullable',
+            'diet_type2' => 'nullable'	
         ];
     }
 }
