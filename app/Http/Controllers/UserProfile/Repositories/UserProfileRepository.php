@@ -21,10 +21,11 @@ class UserProfileRepository implements UserProfileInterface
             array_merge($request->all(), ['user_id' => $user_id]));
     }
 
-    public function getUserProfileById($id)
+    public function getUserProfileByUserId($user_id)
     {
         return $this->userProfile
-        ->where('user_id', $id)
+        ->where('user_id', $user_id)
+        ->orderBy('id', 'desc')
         ->first();
     }
 }
