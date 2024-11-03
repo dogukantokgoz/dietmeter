@@ -15,10 +15,16 @@ class UserProfileRepository implements UserProfileInterface
         $this->userProfile = $userProfile;
     }
 
+    public function store($user_id, $request) 
+    {
+        return $this->userProfile->create(
+            array_merge($request->all(), ['user_id' => $user_id]));
+    }
+
     public function getUserProfileById($id)
     {
         return $this->userProfile
-        ->where('id', $id)
-        ->get();
+        ->where('user_id', $id)
+        ->first();
     }
 }

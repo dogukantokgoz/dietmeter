@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('activity_level');
             $table->string('diet_type');
             $table->string('diet_type2');
+            $table->timestamps();
         });
     }
 

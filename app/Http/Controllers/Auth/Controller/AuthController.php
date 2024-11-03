@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Auth\Requests\RegisterRequest;
 use App\Http\Controllers\Auth\Requests\LoginRequest;
 use App\Enumerations\Auth\LoginEnum;
+use App\Http\Controllers\Auth\Contracts\LoginInterface;
 use Illuminate\Support\Facades\Auth;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
