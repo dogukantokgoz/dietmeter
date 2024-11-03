@@ -6,5 +6,5 @@ enum LoginEnum: string
 {
     case SUCCESS_CREATED = 'User created successfully';
     
-    case SUCCESS_FAILED = 'User creation failed';
+    case FAILED_CREATED = 'User creation failed';
 }

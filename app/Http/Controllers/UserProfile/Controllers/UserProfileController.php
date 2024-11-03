@@ -23,6 +23,11 @@ class UserProfileController extends Controller
        return $this->service->index();
     }
 
+    public function create()
+    {
+        return $this->service->create();
+    }
+
     public function store(UserProfileStoreRequest $request)
     {
         return $this->service->store($request);

@@ -45,7 +45,7 @@ class AuthController extends Controller
             if($user){          
                 return response()->json(['status' => 'success', 'message' => LoginEnum::SUCCESS_CREATED->value]);
             } else {
-                return response()->json(['status' => 'error', 'message' => LoginEnum::SUCCESS_FAILED->value]);
+                return response()->json(['status' => 'error', 'message' => LoginEnum::FAILED_CREATED->value]);
             }
         } catch (\Exception $e) {
             return response()->json(['status' => 'error', 'message' => $e->getMessage()]);

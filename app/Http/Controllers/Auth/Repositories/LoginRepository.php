@@ -19,4 +19,11 @@ class LoginRepository implements LoginInterface
     {
         return $this->user->create($request->all());
     }
+
+    public function getUser($id)
+    {
+        return $this->user
+        ->where('id', $id)
+        ->first();
+    }
 }
