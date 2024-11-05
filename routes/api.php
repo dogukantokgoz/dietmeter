@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\Controller\AuthController;
 use App\Http\Controllers\UserProfile\Controllers\UserProfileController;
+use App\Http\Controllers\WorkoutMoves\Controllers\WorkoutMovesController;
+use App\Http\Controllers\SportCategories\Controllers\SportCategoriesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,4 +27,10 @@ Route::group(['middleware' => 'jwt.auth'], function () {
 
     //UserProfile
     Route::resource('/profile', UserProfileController::class);
+
+    //WorkoutMoves
+    Route::resource('/workout', WorkoutMovesController::class);
+
+    //SportCategories
+    Route::resource('/sport-categories', SportCategoriesController::class);
 });
