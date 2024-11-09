@@ -4,6 +4,8 @@ namespace App\Http\Controllers\SportCategories\Contracts;
 
 interface SportCategoriesInterface
 {
-    public function get_categories();
+    public function getCategories(array $columns = ['*']);
+
+    public function getCategoryById($id, array $columns = ['*']);
 }
 

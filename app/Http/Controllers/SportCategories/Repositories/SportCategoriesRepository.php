@@ -15,10 +15,19 @@ class SportCategoriesRepository implements SportCategoriesInterface
         $this->sportCategories = $sportCategories;
     }
 
-    public function get_categories()
+    public function getCategories(array $columns = ['*'])
     {
         return $this->sportCategories
             ->orderBy('id', 'asc')
+            ->select($columns)
             ->get();
+    }
+
+    public function getCategoryById($id, array $columns = ['*'])
+    {
+        return $this->sportCategories
+            ->where('id', $id)
+            ->select($columns)
+            ->first();
     }
 }
