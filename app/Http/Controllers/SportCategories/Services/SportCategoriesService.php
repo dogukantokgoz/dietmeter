@@ -10,7 +10,7 @@ class SportCategoriesService
 {
     public function index()
     {
-        $get_categories = app()->make(SportCategoriesInterface::class)->get_categories();
+        $get_categories = app()->make(SportCategoriesInterface::class)->getCategories();
         if ($get_categories) {
             return response()->json([
                 'status' => 'success',
