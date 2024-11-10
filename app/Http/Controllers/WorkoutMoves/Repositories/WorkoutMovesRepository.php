@@ -53,4 +53,21 @@ class WorkoutMovesRepository implements WorkoutMovesInterface
     {
         return $this->workoutMoves->destroy($id);
     }
+
+    public function getMovesByCategoryId($category_id, array $columns = ['*'])
+    {
+        return $this->workoutMoves
+            ->where('category_id', $category_id)
+            ->orderBy('name', 'asc')
+            ->select($columns)
+            ->get();
+    }
+
+    public function updateForCategory($request, array $ids)
+    {
+        return $this->workoutMoves
+            ->whereIn('id', $ids)
+            ->update($request);
+    }
+    
 }

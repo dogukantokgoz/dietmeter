@@ -6,27 +6,38 @@ use App\Http\Controllers\WorkoutMoves\Contracts\WorkoutMovesInterface;
 use App\Http\Controllers\SportCategories\Contracts\SportCategoriesInterface;
 use App\Http\Controllers\Auth\Contracts\LoginInterface;
 use App\Enumerations\WorkoutMoves\WorkoutMovesReturnMessageEnum;
+use App\Enumerations\SportCategories\SportCategoriesReturnMessageEnum;
 
 class WorkoutMovesService
 {
     public function index()
     {
         $get_moves = app()->make(WorkoutMovesInterface::class)->getMoves();
-
-        if ($get_moves) {
+        
+        if ($get_moves->isEmpty()) {
             return response()->json([
                 'status' => 'success',
-                'data' => $get_moves
+                'message' => WorkoutMovesReturnMessageEnum::NOT_FOUND
             ]);
         }
 
-        return $this->returnError(WorkoutMovesReturnMessageEnum::NOT_FOUND);
+        return response()->json([
+            'status' => 'success',
+            'data' => $get_moves
+        ]);
     }
 
     public function create() 
     {
-        $get_categories = app()->make(SportCategoriesInterface::class)->getCategories(['id', 'category_name']);
-
+        $get_categories = app()->make(SportCategoriesInterface::class)->getCategories(['id', 'name']);
+        
+        if ($get_categories->isEmpty()) {
+            return response()->json([
+                'status' => 'success',
+                'message' => SportCategoriesReturnMessageEnum::NOT_FOUND
+            ]);
+        }
+        
         return response()->json([
             'status' => 'success',
             'data' => $get_categories
@@ -51,38 +62,54 @@ class WorkoutMovesService
     public function show($id)
     {
         $get_move = app()->make(WorkoutMovesInterface::class)->getMoveById($id, ['id', 'category_id', 'name']);
-        $get_category = app()->make(SportCategoriesInterface::class)->getCategoryById($get_move->category_id, ['id', 'category_name']);
 
-        if($get_move && $get_category) {
-
-            return response()->json([
-                'status' => 'success',
-                'data' => ['move' => $get_move, 'category' => $get_category]
-            ]);
+        if(isset($get_move->category_id) && $get_move->category_id != null) {
+            $get_category = app()->make(SportCategoriesInterface::class)->getCategoryById($get_move->category_id, ['id', 'name']);
+        
+            if($get_move && $get_category) {
+                return response()->json([
+                   'status' => 'success',
+                    'data' => ['move' => $get_move, 'category' => $get_category]
+             ]);
+            }
         }
 
+        if(empty($get_move))
         return $this->returnError(WorkoutMovesReturnMessageEnum::NOT_FOUND);
+
+        return response()->json([
+            'status' => 'success',
+            'data' => ['move' => $get_move, 'category' => $get_category ?? WorkoutMovesReturnMessageEnum::UNCATEGORIZED_MOVE]
+         ]);
     }
 
     public function edit($id)
     {
         $get_move = app()->make(WorkoutMovesInterface::class)->getMoveById($id, ['id', 'category_id', 'name']);
-        $get_category = app()->make(SportCategoriesInterface::class)->getCategoryById($get_move->category_id, ['id', 'category_name']);
 
-        if($get_move && $get_category) {
-
-            return response()->json([
-                'status' => 'success',
-                'data' => ['move' => $get_move, 'category' => $get_category]
-            ]);
+        if(isset($get_move->category_id) && $get_move->category_id != null) {
+            $get_category = app()->make(SportCategoriesInterface::class)->getCategoryById($get_move->category_id, ['id', 'name']);
+        
+            if($get_move && $get_category) {
+                return response()->json([
+                   'status' => 'success',
+                    'data' => ['move' => $get_move, 'category' => $get_category]
+             ]);
+            }
         }
 
+        if(empty($get_move))
         return $this->returnError(WorkoutMovesReturnMessageEnum::NOT_FOUND);
+
+        return response()->json([
+            'status' => 'success',
+            'data' => ['move' => $get_move, 'category' => $get_category ?? WorkoutMovesReturnMessageEnum::UNCATEGORIZED_MOVE]
+         ]);
     }
 
     public function update($request, $id)
     {
-        $update = app()->make(WorkoutMovesInterface::class)->update(['category_id' => $request->category_id, 'name' => $request->name], $id);
+        $update = app()->make(WorkoutMovesInterface::class)->update(['category_id' => $request->category_id ?? null, 'name' => $request->name], $id);
 
         if($update) {
             return response()->json([

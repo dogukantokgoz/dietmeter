@@ -26,8 +26,4 @@ return new class extends Migration
     {
         Schema::dropIfExists('categories');
     }
-
-    public function products() {
-        return $this->belongsTo(Product::class);
-    }
 };

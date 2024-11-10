@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\WorkoutMoves\Requests;
+namespace App\Http\Controllers\SportCategories\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class MoveStoreRequest extends FormRequest
+class SportCategoriesUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,8 +22,8 @@ class MoveStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'category_id' => 'nullable',
-            'name' => 'required'
+            'move_id' => 'nullable',
+            'category_name' => 'nullable'
         ];
     }
 }

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\WorkoutMoves;
 
 class SportCategory extends Model
 {
@@ -14,6 +15,10 @@ class SportCategory extends Model
     public $timestamps = true;
 
     protected $fillable = [
-        'category_name'
+        'name'
     ];
+
+    public function moves() {
+        return $this->belongsTo(WorkoutMoves::class);
+    }
 }

@@ -11,4 +11,5 @@ enum WorkoutMovesReturnMessageEnum: string
     case AVAILABLE_NAME = 'There is such a move';
     case DELETE_SUCCESS = 'Move deleted Successfully';
     case DELETE_ERROR = 'Move deleting failed';
+    case UNCATEGORIZED_MOVE = 'Move has no category';
 }

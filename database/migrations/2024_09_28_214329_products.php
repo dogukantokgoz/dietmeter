@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('category_id')->constrained('categories');
+            $table->foreignId('category_id')->nullable()->constrained('categories')->nullOnDelete();  
             $table->string('name');
             $table->string('description');
             $table->string('image');
@@ -31,9 +31,5 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('products');
-    }
-
-    public function categories() {
-        return $this->hasOne(Category::class);
     }
 };
