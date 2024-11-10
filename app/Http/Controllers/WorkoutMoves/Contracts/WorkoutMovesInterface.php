@@ -15,5 +15,9 @@ interface WorkoutMovesInterface
     public function update($request, $id);
 
     public function destroy($id);
+
+    public function getMovesByCategoryId($category_id, array $columns = ['*']);
+
+    public function updateForCategory($request, array $ids);
 }
 

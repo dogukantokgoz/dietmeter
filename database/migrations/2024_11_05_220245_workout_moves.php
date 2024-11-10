@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('workout_moves', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('category_id')->constrained('sport_categories');
+            $table->foreignId('category_id')->nullable()->constrained('sport_categories')->nullOnDelete();  
             $table->string('name');
             $table->timestamps();
         });
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('workout_moves');
     }
 };

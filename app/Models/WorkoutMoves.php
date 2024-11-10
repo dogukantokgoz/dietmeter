@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\SportCategories;
 
 class WorkoutMoves extends Model
 {
@@ -17,4 +18,8 @@ class WorkoutMoves extends Model
         'category_id',
         'name'
     ];
+
+    public function category() {
+        return $this->hasOne(SportCategory::class);
+    }
 }
