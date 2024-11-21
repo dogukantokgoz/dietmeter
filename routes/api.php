@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\Controller\AuthController;
 use App\Http\Controllers\UserProfile\Controllers\UserProfileController;
 use App\Http\Controllers\WorkoutMoves\Controllers\WorkoutMovesController;
 use App\Http\Controllers\SportCategories\Controllers\SportCategoriesController;
+use App\Http\Controllers\Program\Controllers\ProgramController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,4 +34,7 @@ Route::group(['middleware' => 'jwt.auth'], function () {
 
     //SportCategories
     Route::resource('/sport-categories', SportCategoriesController::class);
+
+    //Program
+    Route::resource('/program', ProgramController::class);
 });
