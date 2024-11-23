@@ -16,6 +16,8 @@ return new class extends Migration
            $table->foreignId('user_id')->constrained('users')->nullOnDelete();
            $table->integer('category');
            $table->integer('move');
+           $table->integer('move_amount');
+           $table->integer('set_amount');
            $table->integer('number_of_program');
            $table->timestamps();
        });

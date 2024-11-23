@@ -17,7 +17,9 @@ class Program extends Model
         'user_id',
         'category',
         'move',
-        'number_of_program'
+        'move_amount',
+        'set_amount',
+        'number_of_program',
     ];
 
     public function user() {
