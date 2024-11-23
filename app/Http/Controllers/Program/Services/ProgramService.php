@@ -13,8 +13,7 @@ class ProgramService
     public function index()
     {
         $user = auth()->user();
-        $get_programs = app()->make(ProgramInterface::class)->getProgramsById($user->id);
-        $program = [];
+        $get_programs = app()->make(ProgramInterface::class)->getPrograms($user->id);
 
         if ($get_programs->isEmpty()) {
             return response()->json([
