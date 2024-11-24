@@ -44,4 +44,25 @@ class ProgramRepository implements ProgramInterface
             ->where('user_id', $user_id)
             ->first();
     }
+
+    public function show($number_of_program, array $columns = ['*'])
+    {
+        return $this->program
+            ->orderBy('id', 'desc')
+            ->select($columns)
+            ->where('number_of_program', $number_of_program)
+            ->get();
+    }
+
+    public function updateById($move)
+    {
+        return $this->program
+            ->where('id', $move['id'])
+            ->update($move);
+    }
+
+    public function destroy($id)
+    {
+        return $this->program->destroy($id);
+    }
 }
