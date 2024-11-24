@@ -6,6 +6,7 @@ use Illuminate\Routing\Controller;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Program\Services\ProgramService;
 use App\Http\Controllers\Program\Requests\ProgramStoreRequest;
+use App\Http\Controllers\Program\Requests\ProgramUpdateRequest;
 
 class ProgramController extends Controller
 {
@@ -29,5 +30,25 @@ class ProgramController extends Controller
     public function store(ProgramStoreRequest $request)
     {
         return $this->service->store($request);
+    }
+
+    public function show($number_of_program)
+    {
+        return $this->service->show($number_of_program);
+    }
+
+    public function edit($number_of_program)
+    {
+        return $this->service->edit($number_of_program);
+    }
+
+    public function update(ProgramUpdateRequest $request)
+    {
+        return $this->service->update($request);
+    }
+
+    public function destroy($id)
+    {
+        return $this->service->destroy($id);
     }
 }
